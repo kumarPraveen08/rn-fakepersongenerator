@@ -9,8 +9,8 @@ import {
 import React from 'react';
 
 import useTheme from '../../hooks/useTheme';
-import useSettingsStorage from '../../states/useSettingsStorage';
 import {useModal} from '../../providers/ModalProvider';
+import useSettingsStorage from '../../states/useSettingsStorage';
 
 const NoticeModal = ({title, message}) => {
   const theme = useTheme();

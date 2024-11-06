@@ -1,8 +1,9 @@
-import {View, Text, StyleSheet, Vibration} from 'react-native';
 import React from 'react';
-import useTheme from '../hooks/useTheme';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Clipboard from '@react-native-clipboard/clipboard';
+import {View, Text, StyleSheet, Vibration} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import useTheme from '../hooks/useTheme';
 import useSettingsStorage from '../states/useSettingsStorage';
 
 const DisplayComponent = ({label, value}) => {

@@ -23,8 +23,6 @@ import ProfileItem from '../components/ProfileItem';
 import DeleteModal from '../components/modal/DeleteModal';
 import MessageModal from '../components/modal/MessageModal';
 import useTheme from '../hooks/useTheme';
-import useBackPress from '../hooks/useHardwareBack';
-import useInterstitialAd from '../hooks/useInterstitialAd';
 import {flattenData, jsonToCSV, writeCSVFile} from '../utils';
 
 const SavedScreen = () => {
@@ -32,10 +30,9 @@ const SavedScreen = () => {
   const styles = createStyle(theme);
   const navigation = useNavigation();
   const {isVibration} = useSettingsStorage();
-  const {bookmarks, removeAll} = useBookmarksStore();
+  const {bookmarks} = useBookmarksStore();
   const [loading, setLoading] = useState(false);
   const {openModal} = useModal();
-  const {isAdLoaded, showAd} = useInterstitialAd();
 
   const handleExport = () => {
     isVibration && Vibration.vibrate(35);
@@ -70,12 +67,8 @@ const SavedScreen = () => {
   };
 
   const handleBack = () => {
-    if (isAdLoaded && Math.random() < 0.5) {
-      showAd();
-    }
     isVibration && Vibration.vibrate(35);
     navigation.goBack();
-    return true;
   };
 
   const handleRemoveAll = () => {
@@ -87,8 +80,6 @@ const SavedScreen = () => {
       />,
     );
   };
-
-  useBackPress(handleBack);
 
   return (
     <View style={styles.container}>

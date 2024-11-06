@@ -21,10 +21,6 @@ import DropdownComponent from '../components/DropdownComponent';
 import useSettingsStorage from '../states/useSettingsStorage';
 import usePromote from '../hooks/usePromote';
 import usePerson from '../hooks/api/usePerson';
-import useInternetConnection from '../hooks/useInternetConnection';
-import BannerAdComponent from '../components/BannerAdComponent';
-import useBackPress from '../hooks/useHardwareBack';
-import useInterstitialAd from '../hooks/useInterstitialAd';
 
 const GenerateProfileScreen = () => {
   const theme = useTheme();
@@ -35,45 +31,33 @@ const GenerateProfileScreen = () => {
   const [sex, setSex] = useState('random');
   const [age, setAge] = useState({minAge: 18, maxAge: 65});
   const [country, setCountry] = useState('en_US');
-  const isConnected = useInternetConnection();
-  const {isAdLoaded, showAd} = useInterstitialAd();
 
   const handleGenerate = () => {
     isVibration && Vibration.vibrate(35);
-    if (isConnected) {
-      setLoading(true);
-      setTimeout(() => {
-        try {
-          const person = usePerson(country, sex, age, 1);
-          setLoading(false);
-          navigation.navigate('ProfileScreen', {data: person.data[0]});
-        } catch (error) {
-          console.error(error);
-          Alert.alert('Error', 'Failed to generate persons. Please try again.');
-        } finally {
-          setLoading(false);
-        }
-      }, 100);
-    } else {
-      ToastAndroid.show('No Internet Connection', ToastAndroid.SHORT);
-    }
+    setLoading(true);
+    setTimeout(() => {
+      try {
+        const person = usePerson(country, sex, age, 1);
+        setLoading(false);
+        navigation.navigate('ProfileScreen', {data: person.data[0]});
+      } catch (error) {
+        console.error(error);
+        Alert.alert('Error', 'Failed to generate persons. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    }, 100);
   };
 
   const handleBack = () => {
-    if (isAdLoaded && Math.random() < 0.5) {
-      showAd();
-    }
     isVibration && Vibration.vibrate(35);
     navigation.goBack();
-    return true;
   };
 
   const handleShare = () => {
     isVibration && Vibration.vibrate(35);
     usePromote('share');
   };
-
-  useBackPress(handleBack);
 
   return (
     <View style={styles.container}>
@@ -124,7 +108,6 @@ const GenerateProfileScreen = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      <BannerAdComponent type="other" theme={theme} />
     </View>
   );
 };

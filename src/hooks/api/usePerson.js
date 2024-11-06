@@ -1,5 +1,5 @@
 import {allFakers, faker} from '@faker-js/faker';
-import {getRandomItem} from '../../utils';
+import {female, getRandomItem, male} from '../../utils';
 import {countries, support_iban} from '../../constants/Options';
 
 const usePerson = (_locale, _gender, _age, _quantity = 1) => {
@@ -21,6 +21,7 @@ const usePerson = (_locale, _gender, _age, _quantity = 1) => {
   const countryCode = `${
     countries.find(c => c.value === _locale).icon
   }`.toUpperCase();
+  const flag = `${countries.find(c => c.value === _locale).flag}`;
   const isSupportIban = support_iban.includes(countryCode);
 
   const f = allFakers[_locale];
@@ -49,12 +50,8 @@ const usePerson = (_locale, _gender, _age, _quantity = 1) => {
     const obj = {
       id: 1,
       seed: myseed,
-      avatar: f.image.urlLoremFlickr({
-        height: 256,
-        width: 256,
-        category: _gender === 'male' ? 'boy' : 'girl',
-      }),
-      flag: countryCode,
+      avatar: _gender === 'male' ? male : female,
+      flag: flag,
       card: [
         {key: 'Credit Card Name', value: cardIssuer},
         {

@@ -13,8 +13,6 @@ import useTheme from '../hooks/useTheme';
 import {formatFileSize, listFiles, openFile} from '../utils';
 import HeaderComponent from '../components/HeaderComponent';
 import useSettingsStorage from '../states/useSettingsStorage';
-import {useInterstitialAd} from 'react-native-google-mobile-ads';
-import useBackPress from '../hooks/useHardwareBack';
 
 const DownloadsScreen = () => {
   const theme = useTheme();
@@ -22,22 +20,15 @@ const DownloadsScreen = () => {
   const navigation = useNavigation();
   const {isVibration} = useSettingsStorage();
   const [files, setFiles] = useState([]);
-  const {isAdLoaded, showAd} = useInterstitialAd();
 
   const handleBack = () => {
-    if (isAdLoaded && Math.random() < 0.5) {
-      showAd();
-    }
     isVibration && Vibration.vibrate(35);
     navigation.goBack();
-    return true;
   };
 
   useEffect(() => {
     listFiles(setFiles);
   }, [listFiles, setFiles]);
-
-  useBackPress(handleBack);
 
   return (
     <View style={styles.container}>

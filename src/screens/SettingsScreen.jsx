@@ -13,7 +13,6 @@ import {
 import HeaderComponent from '../components/HeaderComponent';
 import useSettingsStorage from '../states/useSettingsStorage';
 import useTheme from '../hooks/useTheme';
-import usePromote from '../hooks/usePromote';
 import SETTINGS from '../constants/Settings';
 import APP from '../constants/App';
 
@@ -29,8 +28,6 @@ const SettingsScreen = () => {
     isVibration && Vibration.vibrate(35);
     if (action === 'screen-download') {
       navigation.navigate('DownloadsScreen');
-    } else {
-      usePromote(action);
     }
   };
 

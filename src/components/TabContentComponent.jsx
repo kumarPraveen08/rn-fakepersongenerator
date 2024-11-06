@@ -1,5 +1,6 @@
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import React from 'react';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+
 import useTheme from '../hooks/useTheme';
 import DisplayComponent from './DisplayComponent';
 

@@ -7,10 +7,9 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Vibration,
-  ToastAndroid,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import Slider from '@react-native-community/slider';
+import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
@@ -30,10 +29,6 @@ import MessageModal from '../components/modal/MessageModal';
 import {ages, countries, gender} from '../constants/Options';
 import useSettingsStorage from '../states/useSettingsStorage';
 import DropdownComponent from '../components/DropdownComponent';
-import useInternetConnection from '../hooks/useInternetConnection';
-import BannerAdComponent from '../components/BannerAdComponent';
-import useBackPress from '../hooks/useHardwareBack';
-import useInterstitialAd from '../hooks/useInterstitialAd';
 
 const GenerateBulkScreen = () => {
   const theme = useTheme();
@@ -49,34 +44,28 @@ const GenerateBulkScreen = () => {
   const [persons, setPersons] = useState([]);
   const [isFinished, setFinished] = useState(false);
   const {openModal} = useModal();
-  const isConnected = useInternetConnection();
-  const {isAdLoaded, showAd} = useInterstitialAd();
 
   const handleGenerate = () => {
     isVibration && Vibration.vibrate(35);
-    if (isConnected) {
-      setLoading(true);
-      setTimeout(() => {
-        try {
-          const generatedPersons = usePerson(country, sex, age, quantity);
-          setPersons(generatedPersons);
-        } catch (error) {
-          console.error(error);
-          openModal(
-            <MessageModal
-              title="Error"
-              message="Failed to generate persons. Please try again."
-            />,
-          );
-          setLoading(false);
-        } finally {
-          setLoading(false);
-          setFinished(true);
-        }
-      }, 100);
-    } else {
-      ToastAndroid.show('No Internet Connection', ToastAndroid.SHORT);
-    }
+    setLoading(true);
+    setTimeout(() => {
+      try {
+        const generatedPersons = usePerson(country, sex, age, quantity);
+        setPersons(generatedPersons);
+      } catch (error) {
+        console.error(error);
+        openModal(
+          <MessageModal
+            title="Error"
+            message="Failed to generate persons. Please try again."
+          />,
+        );
+        setLoading(false);
+      } finally {
+        setLoading(false);
+        setFinished(true);
+      }
+    }, 100);
   };
 
   const handleDownloadCSV = async () => {
@@ -121,20 +110,14 @@ const GenerateBulkScreen = () => {
   };
 
   const handleBack = () => {
-    if (isAdLoaded && Math.random() < 0.5) {
-      showAd();
-    }
     isVibration && Vibration.vibrate(35);
     navigation.goBack();
-    return true;
   };
 
   const handleShare = () => {
     isVibration && Vibration.vibrate(35);
     usePromote('share');
   };
-
-  useBackPress(handleBack);
 
   return (
     <View style={styles.container}>
@@ -222,7 +205,6 @@ const GenerateBulkScreen = () => {
         )}
         <Text style={styles.quantity}>Quantity: {quantity}</Text>
       </View>
-      <BannerAdComponent type="other" theme={theme} />
     </View>
   );
 };

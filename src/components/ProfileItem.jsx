@@ -7,15 +7,17 @@ import {
   Vibration,
 } from 'react-native';
 import React from 'react';
-import useTheme from '../hooks/useTheme';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import useBookmarksStore from '../states/useBookmarksStore';
-import CountryFlag from 'react-native-country-flag';
 import useSettingsStorage from '../states/useSettingsStorage';
+import useTheme from '../hooks/useTheme';
+import CountryFlag from './CountryFlag';
+import {countries} from '../constants/Options';
 
 const ProfileItem = ({data}) => {
-  const {personal, avatar, seed} = data;
+  const {personal, avatar, seed, flag} = data;
   const theme = useTheme();
   const styles = createStyle(theme);
   const navigation = useNavigation();
@@ -37,7 +39,7 @@ const ProfileItem = ({data}) => {
       activeOpacity={0.6}
       style={styles.container}
       onPress={handlePress}>
-      <Image source={{uri: avatar}} style={styles.image} />
+      <Image source={avatar} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.label}>Name</Text>
         <Text style={styles.value}>{personal[2].value}</Text>
@@ -45,8 +47,7 @@ const ProfileItem = ({data}) => {
       </View>
       <Icon name="delete" size={24} color={theme.text} onPress={handleDelete} />
       <CountryFlag
-        isoCode={data?.flag.toLowerCase() || 'in'}
-        size={12}
+        isoCode={flag || require('../assets/flags/zz.webp')}
         style={styles.flag}
       />
     </TouchableOpacity>

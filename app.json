@@ -1,7 +1,4 @@
 {
   "name": "fakepersongenerator",
-  "displayName": "Fake Person Generator",
-  "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-5874253013765779~5900920366"
-  }
+  "displayName": "Fake Person Generator"
 }

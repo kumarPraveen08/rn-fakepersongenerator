@@ -12,9 +12,12 @@ import TabViewComponent from '../components/TabViewComponent';
 import {useNavigation} from '@react-navigation/native';
 import useBookmarksStore from '../states/useBookmarksStore';
 import useSettingsStorage from '../states/useSettingsStorage';
-import useBackPress from '../hooks/useHardwareBack';
-import useInterstitialAd from '../hooks/useInterstitialAd';
-import {female, male} from '../utils';
+
+import {LogBox} from 'react-native';
+
+LogBox.ignoreLogs([
+  'Warning: A props object containing a "key" prop is being spread into JSX',
+]);
 
 const ProfileScreen = props => {
   const {data} = props.route.params;
@@ -24,7 +27,6 @@ const ProfileScreen = props => {
   const {isVibration} = useSettingsStorage();
   const {addBookmark, removeBookmark, isBookmarked} = useBookmarksStore();
   const [loading, setLoading] = useState(false);
-  const {isAdLoaded, showAd} = useInterstitialAd();
 
   const handleBookmark = () => {
     isVibration && Vibration.vibrate(35);
@@ -36,15 +38,9 @@ const ProfileScreen = props => {
   };
 
   const handleBack = () => {
-    if (isAdLoaded && Math.random() < 0.5) {
-      showAd();
-    }
     isVibration && Vibration.vibrate(35);
     navigation.goBack();
-    return true;
   };
-
-  useBackPress(handleBack);
 
   return (
     <View style={styles.container}>
@@ -61,10 +57,7 @@ const ProfileScreen = props => {
             <ActivityIndicator color={theme.border} style={styles.loader} />
           )}
           <Image
-            source={
-              {uri: data?.avatar} ||
-              (data?.personal[3].value === 'Male' ? male : female)
-            }
+            source={data?.avatar}
             style={styles.image}
             onLoadStart={() => setLoading(true)}
             onLoadEnd={() => setLoading(false)}

@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import CountryFlag from 'react-native-country-flag';
 import SelectDropdown from 'react-native-select-dropdown';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import CountryFlag from './CountryFlag';
 import useTheme from '../hooks/useTheme';
 
 const DropdownComponent = ({
@@ -35,8 +35,7 @@ const DropdownComponent = ({
             )}
             {selectedItem && type === 'flag' && (
               <CountryFlag
-                isoCode={selectedItem.icon}
-                size={18}
+                isoCode={selectedItem.flag}
                 style={{borderRadius: 3}}
               />
             )}
@@ -68,11 +67,7 @@ const DropdownComponent = ({
                 />
               )}
               {type === 'flag' && (
-                <CountryFlag
-                  isoCode={item.icon}
-                  size={18}
-                  style={{borderRadius: 3}}
-                />
+                <CountryFlag isoCode={item.flag} style={{borderRadius: 3}} />
               )}
               <Text style={styles.dropdownItemTxtStyle}>{item.title}</Text>
             </View>

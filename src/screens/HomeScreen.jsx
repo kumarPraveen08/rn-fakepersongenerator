@@ -1,3 +1,4 @@
+import Snackbar from 'react-native-snackbar';
 import React, {useEffect, useState} from 'react';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {View, StyleSheet, Image, BackHandler, Vibration} from 'react-native';
@@ -9,8 +10,6 @@ import HeaderComponent from '../components/HeaderComponent';
 import ButtonComponent from '../components/ButtonComponent';
 import useSettingsStorage from '../states/useSettingsStorage';
 import useBackPress from '../hooks/useHardwareBack';
-import Snackbar from 'react-native-snackbar';
-import BannerAdComponent from '../components/BannerAdComponent';
 import {useModal} from '../providers/ModalProvider';
 import NoticeModal from '../components/modal/NoticeModal';
 
@@ -111,7 +110,6 @@ const HomeScreen = () => {
           onPress={handleSaved}
         />
       </View>
-      <BannerAdComponent type="other" theme={theme} />
     </View>
   );
 };
