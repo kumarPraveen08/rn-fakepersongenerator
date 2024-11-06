@@ -1,79 +1,64 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Fake Person Generator
 
-# Getting Started
+A simple and efficient React Native app that generates fake person data using [fakerjs.dev](https://github.com/faker-js/faker), allowing users to create realistic-looking fake profiles. This app allows users to generate personal data such as names, addresses, emails, phone numbers, and more. Additionally, users can generate bulk data and download it as a CSV file for testing, development, or data generation purposes.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Features
 
-## Step 1: Start the Metro Server
+- **Generate Fake Person Data:** Generate fake names, addresses, phone numbers, emails, and more.
+- **Bulk Data Generation:** Generate multiple fake profiles at once.
+- **CSV Export:** Download generated data as a CSV file for easy use in your projects.
+- **Mobile-Friendly Interface:** Built with React Native CLI for a smooth experience on Android devices.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+### Preview
 
-To start Metro, run the following command from the _root_ of your React Native project:
+https://github.com/user-attachments/assets/8af1d4c7-9428-46c0-8e0b-aa1aa698d033
 
-```bash
-# using npm
-npm start
+## Installation
 
-# OR using Yarn
-yarn start
-```
+To run the app locally, follow these steps:
 
-## Step 2: Start your Application
+### Prerequisites
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+- [Node.js](https://nodejs.org/) (version 18.x or above)
+- [React Native CLI](https://reactnative.dev/docs/environment-setup) installed globally
+- Android Studio (for Android development)
+- Xcode (for iOS development, macOS only)
 
-### For Android
+### Steps:
 
-```bash
-# using npm
-npm run android
+1. Clone the repository:
 
-# OR using Yarn
-yarn android
-```
+   ```bash
+   git clone https://github.com/kumarPraveen08/rn-fakepersongenerator.git
 
-### For iOS
+   ```
 
-```bash
-# using npm
-npm run ios
+2. Navigate to the project directory:
 
-# OR using Yarn
-yarn ios
-```
+   ```bash cd rn-fakepersongenerator
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+   ```
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+3. Install dependencies:
 
-## Step 3: Modifying your App
+   ```bash npm install
 
-Now that you have successfully run the app, let's modify it.
+   ```
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+4. For Android development, run:
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+   ```bash npx react-native run-android
 
-## Congratulations! :tada:
+   ```
 
-You've successfully run and modified your React Native App. :partying_face:
+5. For iOS development (macOS only), run:
 
-### Now what?
+   ```bash npx react-native run-ios
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+   ```
 
-# Troubleshooting
+(Note: You may need to have an active simulator or a device connected to run the iOS version.)
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### Credits:
 
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Faker.js - Faker.js is a library used to generate fake data for testing, development, or mocking. You can find it here: Faker.js [Github](https://github.com/faker-js/faker).
