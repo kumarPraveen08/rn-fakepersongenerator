@@ -30,31 +30,30 @@ To run the app locally, follow these steps:
 
    ```bash
    git clone https://github.com/kumarPraveen08/rn-fakepersongenerator.git
-
    ```
 
 2. Navigate to the project directory:
 
-   ```bash cd rn-fakepersongenerator
-
+   ```bash
+   cd rn-fakepersongenerator
    ```
 
 3. Install dependencies:
 
-   ```bash npm install
-
+   ```bash
+   npm install
    ```
 
 4. For Android development, run:
 
-   ```bash npx react-native run-android
-
+   ```bash
+   npx react-native run-android
    ```
 
 5. For iOS development (macOS only), run:
 
-   ```bash npx react-native run-ios
-
+   ```bash
+   npx react-native run-ios
    ```
 
 (Note: You may need to have an active simulator or a device connected to run the iOS version.)
