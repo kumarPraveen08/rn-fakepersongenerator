@@ -13,6 +13,9 @@ A simple and efficient React Native app that generates fake person data using [f
 
 https://github.com/user-attachments/assets/8af1d4c7-9428-46c0-8e0b-aa1aa698d033
 
+![Screenshots](https://github.com/user-attachments/assets/3382dd36-07d0-4f3e-ad1d-87d327c3470a)
+![Screenshots](https://github.com/user-attachments/assets/5535f8a4-6b63-4c7d-b9c7-5636c5d53901)
+
 ## Installation
 
 To run the app locally, follow these steps:
